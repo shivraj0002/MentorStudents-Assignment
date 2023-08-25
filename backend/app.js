@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const routes = require("./routes");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 
 app.use(express.json());

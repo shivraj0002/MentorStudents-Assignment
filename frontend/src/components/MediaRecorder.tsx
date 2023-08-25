@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, ReactNode } from "react";
 import { useReactMediaRecorder, RecorderErrors } from "react-media-recorder";
 import { Grid, Box } from "@mui/material";
 

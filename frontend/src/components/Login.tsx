@@ -11,39 +11,23 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+interface props {
+  setUser: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
-export default function Login() {
+export default function Login({ setUser }: props) {
+  const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const body = JSON.stringify({
       email: data.get("email"),
-      name: data.get("password"),
+      name: data.get("name"),
     });
-
+    console.log(body);
     const options = {
       method: "POST",
       headers: {
@@ -53,8 +37,13 @@ export default function Login() {
     };
 
     const user = await fetch("/api/users/login", options);
-    const json = user.json();
+    const json = await user.json();
     console.log(json);
+    if (json.success) {
+      sessionStorage.setItem("user", JSON.stringify(json));
+      setUser(json.data);
+      navigate("/record");
+    }
   };
 
   return (
