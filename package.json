@@ -1,0 +1,26 @@
+{
+  "name": "mentor_students_assignment",
+  "version": "1.0.0",
+  "description": "assignment for mern app with login functionality and react media recordings",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "build": "npm install  && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "author": "Shivraj Dange",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.4",
+    "morgan": "^1.10.0",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "nodemon": "^3.0.1"
+  }
+}
